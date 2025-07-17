@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom rainbow gradient colors */
+  --rainbow-start: hsl(0, 100%, 70%);
+  --rainbow-mid-1: hsl(60, 100%, 70%);
+  --rainbow-mid-2: hsl(120, 100%, 70%);
+  --rainbow-mid-3: hsl(180, 100%, 70%);
+  --rainbow-mid-4: hsl(240, 100%, 70%);
+  --rainbow-end: hsl(300, 100%, 70%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-fredoka {
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .rainbow-gradient {
+    background: linear-gradient(45deg, 
+      hsl(0, 100%, 70%), 
+      hsl(35, 100%, 70%), 
+      hsl(60, 100%, 70%), 
+      hsl(120, 100%, 70%), 
+      hsl(180, 100%, 70%), 
+      hsl(240, 100%, 70%), 
+      hsl(300, 100%, 70%), 
+      hsl(320, 100%, 75%)
+    );
+    background-size: 400% 400%;
+    animation: rainbow-shift 8s ease infinite;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    .glass-effect {
+      background: rgba(128, 128, 128, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Ensure input text is always visible on mobile */
+    input[type="text"], input[type="number"] {
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+      background: rgba(128, 128, 128, 0.4) !important;
+    }
+    
+    input[type="text"]:focus, input[type="number"]:focus {
+      color: white !important;
+      -webkit-text-fill-color: white !important;
+      background: rgba(128, 128, 128, 0.5) !important;
+    }
+  }
+  
+  .gem-shadow {
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3), 0 0 20px rgba(78, 205, 196, 0.2);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5), 0 0 30px rgba(78, 205, 196, 0.3);
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5), 0 0 30px rgba(78, 205, 196, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(255, 107, 107, 0.8), 0 0 40px rgba(78, 205, 196, 0.6); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes count-up {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes smooth-fade-in {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes button-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes result-pop {
+  0% { transform: scale(0.9) rotate(-1deg); opacity: 0; }
+  50% { transform: scale(1.05) rotate(0.5deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-count-up {
+  animation: count-up 0.5s ease-out;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+.animate-smooth-fade-in {
+  animation: smooth-fade-in 0.6s ease-out;
+}
+
+.animate-button-press {
+  animation: button-press 0.15s ease-out;
+}
+
+.animate-result-pop {
+  animation: result-pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.smooth-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-transform {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-colors {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
